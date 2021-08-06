@@ -66,6 +66,11 @@ costanswersArray=[];
   }
 
 
+  payme(){
+
+    this.router.navigateByUrl("/payment")
+
+  }
 
 
   

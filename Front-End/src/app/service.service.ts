@@ -159,9 +159,14 @@ deleteuser(userObj):Observable<any>{
 
 
 
-
+    patchanswerstatus(id,status):Observable<any>{
+      return this.hc.patch(`${this.API_SERVER}/costanwsers/${id}/status`,status)
+    }
       
 
+
+
+    
    getUserDetails(serviceId):Observable<any>{
     return this.hc.get(`/services/getservices/${serviceId}`)
       }

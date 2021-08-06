@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, NgForm, ValidationErrors, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -25,7 +26,7 @@ export class QuotedemandComponent  {
 
 
 
-  constructor(private fb: FormBuilder, private us:ServiceService, private router: Router){}
+  constructor(private fb: FormBuilder, private us:ServiceService, private router: Router,private http:HttpClient){}
 
 
   ngOnInit(): void {
@@ -120,13 +121,43 @@ this.username=localStorage.getItem("name")
 
   }
 
-  accept(){
+  accept(answer){
+  
 
+this.http.patch(`http://localhost:3000/costanwsers/${answer.id}/status`,{status:'ACCEPTED'}).subscribe(
+      () =>{
+    
+      alert('Congratulation !!! cost estimation offer accepted Our Service Provider will contact you ASAP')
+   
+     // form.reset();
+      let currentUrl = this.router.url;
+      this.router.navigateByUrl('/', {skipLocationChange: true}).then(() => {
+          this.router.navigate([currentUrl]);
+      });
+  
+    },
+    (err)=>{
+      console.log(err)
+    })
   }
 
 
-  decline(){
-
+  decline(answer){
+    this.http.patch(`http://localhost:3000/costanwsers/${answer.id}/status`,{status:'DECLINED'}).subscribe(
+      () =>{
+    
+      alert('Please check the others cost estimation offers')
+   
+     // form.reset();
+      let currentUrl = this.router.url;
+      this.router.navigateByUrl('/', {skipLocationChange: true}).then(() => {
+          this.router.navigate([currentUrl]);
+      });
+  
+    },
+    (err)=>{
+      console.log(err)
+    })
     
   }
 

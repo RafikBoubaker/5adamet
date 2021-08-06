@@ -73,6 +73,9 @@
         <h6 style="margin-left: 70px;">TOTAL COST : {{answer.total}}</h6>
                   <div class="widget-49-meeting-action">
                     <p *ngIf="answer?.status == 'NOTANSWERED'"><i class="fa fa-check-circle" style="color:#c21616;" aria-hidden="true"></i>&nbsp;&nbsp;NOT YET ANSWERED</p>
+                    <p *ngIf="answer?.status == 'ACCEPTED'"><i class="fa fa-check-circle" style="color:#11e935;" aria-hidden="true"></i>&nbsp;&nbsp;CONGRATULATION YOU OFFER IS ACCEPTED PLEASE PROCCED TO PAYMENT OF THE intermediation fees IN ORDER TO GET COSTUMER CONTACT</p>
+                    <button class="btn btn-primary" *ngIf="answer?.status == 'ACCEPTED'" (click)='payme()'>PAY</button>
+                    <p *ngIf="answer?.status == 'DECLINED'"><i class="fa fa-check-circle" style="color:#ff0000;" aria-hidden="true"></i>&nbsp;&nbsp;SORRY YOUR OFFER IS REFUSED BY THE COSTUMER</p>
                   </div>
               </div>
           </div>

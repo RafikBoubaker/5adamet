@@ -5,6 +5,7 @@ import {
   Get,
   Param,
   ParseIntPipe,
+  Patch,
   Post,
   UploadedFile,
   UseGuards,
@@ -16,6 +17,7 @@ import {
 import { CostAnswer } from './costanswer.entity';
 import { CostAnswerService } from './costanswer.service';
 import { CreateCostAnswerDto } from './dto/costanswer.dto';
+import { UpdateCostAnswerStatusDto } from './dto/update-costanswer-status.dto';
 
 @Controller('costanwsers')
 export class CostAnswerController {
@@ -49,6 +51,13 @@ export class CostAnswerController {
     return this.costAnswerService.deleteCostAnswer(id);
   }
 
-
+  @Patch('/:id/status')
+  updateCostAnswerStatus(
+    @Param('id') id: number,
+    @Body() updateCostAnswerStatusDto: UpdateCostAnswerStatusDto,
+  ): Promise<CostAnswer> {
+    const { status } = updateCostAnswerStatusDto;
+    return this.costAnswerService.updateCostAnswerStatus(id, status);
+  }
 
 }

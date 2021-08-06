@@ -57,7 +57,7 @@
     <div class="collapse" id="collapseExample">
       <br>
       <div class="col-lg-4" *ngFor="let answer of costanswersArray">
-        <div class="card card-margin">
+        <div class="card card-margin" *ngIf="answer.status !='NOTANSWERED'">
             <div class="card-body pt-0">
                 <div class="widget-49">
                     <div class="widget-49-title-wrapper">
@@ -73,8 +73,8 @@
           <h3 style="margin-left: 90px;">{{answer.description}}</h3><br>
           <h3 style="margin-left: 90px;">TOTAL COST : {{answer.total}}</h3>
                     <div class="widget-49-meeting-action">
-                        <a  class="btn btn-sm btn-primary">Accept Offer</a>
-                        <a  class="btn btn-sm button-delete">Decline Offer</a>
+                        <a  class="btn btn-sm btn-primary" (click)="accept(answer)">Accept Offer</a>
+                        <a  class="btn btn-sm button-delete" (click)="decline(answer)">Decline Offer</a>
                     </div>
                 </div>
             </div>

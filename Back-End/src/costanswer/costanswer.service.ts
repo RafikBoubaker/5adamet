@@ -1,6 +1,7 @@
 import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { CostAnswer } from './costanswer.entity';
+import { CostAnswerStatus } from './costanswer.enum';
 import { CostAnswerRepository } from './costanswer.repository';
 import { CreateCostAnswerDto } from './dto/costanswer.dto';
 
@@ -56,6 +57,18 @@ export class CostAnswerService {
   }
  
 
+  async updateCostAnswerStatus(
+    id: number,
+    status: CostAnswerStatus,
+   
+  ): Promise<CostAnswer> {
+    const answer = await this.getCostAnswer(id);
 
+    answer.status = status;
+    await this.costanswerRepository.save(answer);
+
+    return answer;
+  }
+  
 }
 
